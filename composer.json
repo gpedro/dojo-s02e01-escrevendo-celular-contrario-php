@@ -1,7 +1,9 @@
 {
-    "name": "gpedro/dojo-s02e01-escrevendo-celular-contrario-php",
     "require": {
-        "phpunit/phpunit": "4.8"
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
     },
     "authors": [
         {
