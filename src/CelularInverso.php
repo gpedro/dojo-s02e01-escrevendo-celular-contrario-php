@@ -3,7 +3,7 @@
 class CelularInverso {
 
 	private $teclas = ['0 ', null, 'ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQRS', 'TUV', 'WXYZ'];
-	private $allowed  = '*#-';
+	private $custom  = '*#-';
 	private $value;
 
 	public function __construct($value = '') {
@@ -24,21 +24,25 @@ class CelularInverso {
 				continue;
 			}
 
-			if (strpos($this->allowed, $letra) !== false) {
+			if (strpos($this->custom, $letra) !== false) {
 				$resultado .= $letra;
 				continue;
 			}
 
 			// carregando as letras
 			foreach ($this->teclas as $numero => $tecla) {
+
 				// se tiver $letra em $tecla, retornar o index
 				if (stripos($tecla, $letra) !== false) {
 					$resultado .= $numero;
 				}
+
 			}
 		}
 
-		if (!$resultado) throw new Exception('Blablabla');
+		if (!$resultado || strlen(implode($this->value)) != strlen($resultado)) {
+			throw new Exception('Blablabla');
+		}
 
 		return $resultado;
 	}

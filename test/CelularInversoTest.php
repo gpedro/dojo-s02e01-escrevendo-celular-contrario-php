@@ -1,6 +1,5 @@
 <?php
 
-require 'vendor/autoload.php';
 class CelularInversoTest extends PHPUnit_Framework_TestCase {
 
 	public function testV() {
@@ -33,16 +32,22 @@ class CelularInversoTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('1-4663-79338-4663', $obj->resolve());
 	}
 
+	/**
+     * @expectedException        Exception
+     * @expectedExceptionMessage Blablabla
+     */
 	public function testSpecialCharacters() {
 		$obj = new CelularInverso('878$&@');
 		$obj->resolve();
-		$this->setExpectedException('Exception', 'Blablabla');
 	}
 
+	/**
+     * @expectedException        Exception
+     * @expectedExceptionMessage Blablabla
+     */
 	public function testUnexpectedCharacters() {
 		$obj = new CelularInverso('8[]78{');
 		$obj->resolve();
-		$this->setExpectedException('Exception', 'Blablabla');
 	}
 
 	public function testLowerCase() {
@@ -59,10 +64,12 @@ class CelularInversoTest extends PHPUnit_Framework_TestCase {
 		$obj = new CelularInverso('#*35 nk');
 		$this->assertEquals('#*35065', $obj->resolve());
 	}
-
+	/**
+     * @expectedException InvalidArgumentException
+     */
 	public function testWithoutArgument() {
-		new CelularInverso();
 		$this->setExpectedException('InvalidArgumentException');
+		new CelularInverso();
 	}
 
 }
